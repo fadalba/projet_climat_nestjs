@@ -1,0 +1,46 @@
+[
+    {
+    
+        "temperature": "20°C",
+        "humidite": "2%"
+        
+    },
+    {
+        
+        "temperature": "47°C",
+        "humidite": "30%"
+        
+    },
+    { 
+      
+        "temperature": "4°C",
+        "humidite": "8%"
+       
+    },
+
+    {
+        
+        "temperature": "20°C",
+        "humidite": "2%"
+        
+    },
+    {
+        
+        "temperature": "27°C",
+        "humidite": "30%"
+        
+    },
+    {
+        
+        "temperature": "24°C",
+        "humidite": "8%"
+       
+    },
+    {
+        "temperature": "24°C",
+        "humidite": "8%"
+       
+    }
+
+
+]

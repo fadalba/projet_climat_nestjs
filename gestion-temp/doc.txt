@@ -1,0 +1,1 @@
+api avec gestion  température et humidité, insertion base de données , modification profil et mot de passe, socket, authentification sécurisée, gestion utilisateurs(sarr)

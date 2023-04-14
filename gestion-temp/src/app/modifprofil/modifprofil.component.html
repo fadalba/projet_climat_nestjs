@@ -1,0 +1,104 @@
+<div   *ngIf="!showFormPass" class=" my-32 p-20 bg-white rounded-md shadow-md mx-48">
+    <div class="font-bold text-4xl text-center mb-3 flex justify-center">
+   <h1 >Modification Profil</h1>
+    </div>
+   <div>
+      <p class="text-center text-red-700 font-bold" *ngIf="signupError">
+        {{signupError}}
+      </p>
+    </div>
+<div class="flex  gap-5 justify-center " >
+<form [formGroup]="registerForm" (ngSubmit)="modifUsers()">
+
+<div class="mb-6 w-full">
+<label for="prenom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prenom</label>
+<input type="text" formControlName="prenom"   class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 w-96">
+<div *ngIf="registerForm.controls.prenom &&  registerForm.controls.prenom.errors && registerForm.controls.prenom.errors.required" class="text-red-600">
+<p>Ce champ est requis</p>
+</div>
+<div *ngIf="registerForm.controls.prenom.dirty &&  registerForm.controls.prenom.errors && registerForm.controls.prenom.errors.whitespace && !registerForm.controls.prenom.errors.required" class="text-red-600">
+<p>Ce champ est invalide</p>
+</div>
+</div>
+<div class="mb-6 w-full">
+<label for="nom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">nom</label>
+<input type="text" formControlName="nom" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" >
+<div *ngIf="registerForm.controls.nom.dirty &&  registerForm.controls.nom.errors && registerForm.controls.nom.errors.required" class="text-red-600">
+<p>Ce champ est requis</p>
+</div>
+<div *ngIf="registerForm.controls.nom.dirty &&  registerForm.controls.nom.errors && registerForm.controls.nom.errors.whitespace && !registerForm.controls.nom.errors.required" class="text-red-600">
+<p>Ce champ est invalide</p>
+</div>
+</div>
+
+
+  <div class="mb-6 w-full">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email</label>
+      <input type="text" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=" email" >
+      <div *ngIf="registerForm.controls.email.dirty &&  registerForm.controls.email.errors && registerForm.controls.email.errors.required" class="text-red-600">
+        <p>Ce champ est requis</p>
+      </div>
+      <div *ngIf="registerForm.controls.email.dirty &&  registerForm.controls.email.errors && registerForm.controls.email.errors.pattern" class="text-red-600">
+        <p>Ce format est incorrect</p>
+      </div>
+      </div>
+
+
+  <button  type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Modifier</button>
+</form>
+</div>
+</div>
+<!-- Modification mot de passe -->
+
+<div  *ngIf="showFormPass" class=" my-32 p-20 bg-white rounded-md shadow-md mx-48">
+  <div class="font-bold text-4xl text-center mb-3 flex justify-center">
+ <h1 >Modification Password</h1>
+  </div>
+ <div>
+    <p class="text-center text-red-700 font-bold" *ngIf="signupError">
+      {{signupError}}
+    </p>
+  </div>
+<div class="flex  gap-5 justify-center " >
+<form [formGroup]="passwordForm" (ngSubmit)="modifpassword()">
+
+<div class="mb-6 w-full">
+<label for="prenom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ancien mot de passe </label>
+<input type="password" formControlName="oldPassword"   class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 w-96">
+<div *ngIf="passwordForm.controls.oldPassword.dirty && passwordForm.controls.oldPassword &&  passwordForm.controls.oldPassword.errors && passwordForm.controls.oldPassword.errors.required" class="text-red-600">
+<p>Ce champ est requis</p>
+</div>
+<div *ngIf="passwordForm.controls.oldPassword.dirty &&  passwordForm.controls.oldPassword.errors && passwordForm.controls.oldPassword.errors.whitespace && !passwordForm.controls.oldPassword.errors.required" class="text-red-600">
+<p>Ce champ est invalide</p>
+</div>
+</div>
+<div class="mb-6 w-full">
+<label for="nom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nouveau mot de passe</label>
+<input type="password" formControlName="newPassword" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"id="pass2" >
+<div *ngIf="passwordForm.controls.newPassword.dirty &&  passwordForm.controls.newPassword.errors && passwordForm.controls.newPassword.errors.required" class="text-red-600">
+<p>Ce champ est requis</p>
+</div>
+<div *ngIf="passwordForm.controls.newPassword.dirty &&  passwordForm.controls.newPassword.errors && passwordForm.controls.newPassword.errors.whitespace && !passwordForm.controls.newPassword.errors.required" class="text-red-600">
+<p>Ce champ est invalide</p>
+</div>
+</div>
+
+
+<div class="mb-6 w-full">
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password2</label>
+    <input type="password" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"  id="pass2" #pass1 >
+    <div *ngIf="passwordForm.controls.confirmNewPassword.dirty &&  passwordForm.controls.confirmNewPassword.errors && passwordForm.controls.confirmNewPassword.errors.required" class="text-red-600">
+      <p>Ce champ est requis</p>
+    </div>
+    <div *ngIf="passwordForm.controls.confirmNewPassword.dirty &&  passwordForm.controls.confirmNewPassword.errors && passwordForm.controls.confirmNewPassword.errors.pattern" class="text-red-600">
+      <p>Ce format est incorrect</p>
+    </div>
+    </div>
+
+
+<button  type="submit"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Modifier</button>
+</form>
+</div>
+</div>

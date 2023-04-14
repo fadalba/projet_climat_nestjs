@@ -1,0 +1,39 @@
+<div class="flex min-h-screen justify-center items-center bg-slate-100">
+
+    <div class="container mx-auto p-48">
+      <div class="flex flex-col items-end lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-md overflow-hidden">
+        <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center" style="background-image: url('images/Register-Background.png');">
+          <img alt="" src="https://cdn.discordapp.com/attachments/1054346597196120105/1059503525845016606/svgviewer-png-output_1.png"/>
+        </div>
+        <div class="w-full lg:w-1/2 py-12 px-12">
+          <h2  class="text-3xl font-bold text-center align mb-4">Connexion</h2>
+          <div>
+            <p class="text-center text-red-700 font-bold" *ngIf="loginError">
+              {{loginError}}
+            </p>
+          </div>
+          <form class="flex flex-col" method="POST" id="loginform"  [formGroup]="profileForm" >
+            <div class="mb-6 w-full">
+            <label for="inputAddress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email</label>
+            <input type="text" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Votre mail" >
+            <div *ngIf="profileForm.controls.email.dirty &&  profileForm.controls.email.errors && profileForm.controls.email.errors.required" class="text-red-600">
+              <p>Ce champ est requis</p>
+            </div>
+            <div *ngIf="profileForm.controls.email.dirty &&  profileForm.controls.email.errors && profileForm.controls.email.errors.pattern" class="text-red-600">
+              <p>Ce format est incorrect</p>
+            </div>
+            </div>
+
+            <div class="mb-6 w-full">
+          <label for="inputAddress2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mot de passe</label>
+          <input type="password" formControlName="password" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="confirmation mot de passe" >
+          <div *ngIf="profileForm.controls.password.dirty &&  profileForm.controls.password.errors && profileForm.controls.password.errors.required" class="text-red-600">
+            <p>Ce champ est requis</p>
+          </div>
+          </div>
+          </form>
+          <button type="submit" (click)="onSubmit()" [disabled]="!profileForm.valid" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Se Connecter</button>
+        </div>
+      </div>
+    </div>
+  </div>

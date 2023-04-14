@@ -1,0 +1,136 @@
+
+ <div   class="  border-2  flex justify-center">
+   <div class="w-full lg:w-1/2 py-16 px-12  ">
+    <h2 class="text-3xl text-center align mb-4">Modifier profil</h2>
+
+    <form [formGroup]="registerForm"   id="form" class="space-y-6">
+      <input type="text" formControlName="id"  hidden> 
+      <div class="mt-5">
+         <div class="input-control">
+            <label for="prenom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prenom
+              </label>
+            <input formControlName=" prenom" class="form-control"  value="{{profil.nom}}"
+           
+               [ngClass]="{'is invalid':submitted && registerForm.controls['prenom'].errors}" type="text" 
+               name="prenom"  
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+               <div *ngIf="submitted && registerForm.controls['prenom'].errors">
+               <div *ngIf="submitted && registerForm.controls['prenom'].errors['required']">
+                 <span class="text-red-700">
+                    Ce champ est  require
+                 </span>
+               </div>
+            </div>
+            </div>
+         </div>
+       <div class="mt-5">
+          <div class="input-control">
+             <label for="nom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">nom
+               </label>
+             <input formControlName=" nom" class="form-control"  value=" {{ profil.prenom }}"
+                [ngClass]="{'is invalid':submitted && registerForm.controls['nom'].errors}" type="text"
+                name="nom"  
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                
+                <div *ngIf="submitted && registerForm.controls['nom'].errors required">
+                  <span class="text-red-700">
+                     Ce champ est  require
+                  </span>
+                </div>
+               
+             </div>
+          </div>
+         
+
+          <div class="mt-5">
+            <div class="input-control">
+               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email
+                 </label>
+               <input formControlName=" email" class="form-control"  value="{{ profil.email }}"
+                  [ngClass]="{'is invalid':submitted && registerForm.controls['email'].errors}" type="text"
+                  name="email"  
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                  
+                  <div *ngIf="submitted && registerForm.controls['email'].errors required">
+                    <span class="text-red-700">
+                       Ce champ est  require
+                    </span>
+                  </div>
+
+                  <div *ngIf="submitted && registerForm.controls['email'].errors email">
+                     <span class="text-red-700">
+                        Email Address incorrect
+                     </span>
+                   </div>
+                  
+                 
+               </div>
+            </div>
+
+
+      <div class="mt-5">
+          <div class="form-group">
+             <button   type="submit" id="button"  
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <span class="visually"  style="color: white;">modifier</span>
+                <span class="spinner-border spinner-border-sm" * role="status" aria-hidden="false"
+                   style="color: white;"></span>
+             </button>
+             
+          </div>
+       </div> 
+    </form>
+ </div>
+
+</div> 
+
+
+<!-- <div class=" my-32 p-20 bg-white rounded-md shadow-md mx-48">
+   <h1 class="font-bold text-xl text-center mb-3">Modification</h1>
+
+   <div>
+      <p class="text-center text-red-700 font-bold" *ngIf="signupError">
+        {{signupError}}
+      </p>
+    </div>
+<div class="flex  gap-5 justify-center  " >
+<form [formGroup]="registerForm" (ngSubmit)="modifUsers()">
+
+<div class="mb-6 w-full">
+<label for="prenom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prenom</label>
+<input type="text" formControlName="prenom"   class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="prenom" >
+<div *ngIf="registerForm.controls.prenom &&  registerForm.controls.prenom.errors && registerForm.controls.prenom.errors.required" class="text-red-600">
+<p>Ce champ est requis</p>
+</div>
+<div *ngIf="registerForm.controls.prenom.dirty &&  registerForm.controls.prenom.errors && registerForm.controls.prenom.errors.whitespace && !registerForm.controls.prenom.errors.required" class="text-red-600">
+<p>Ce champ est invalide</p>
+</div>
+</div>
+<div class="mb-6 w-full">
+<label for="nom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">nom</label>
+<input type="text" formControlName="nom" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="nom" >
+<div *ngIf="registerForm.controls.nom.dirty &&  registerForm.controls.nom.errors && registerForm.controls.nom.errors.required" class="text-red-600">
+<p>Ce champ est requis</p>
+</div>
+<div *ngIf="registerForm.controls.nom.dirty &&  registerForm.controls.nom.errors && registerForm.controls.nom.errors.whitespace && !registerForm.controls.nom.errors.required" class="text-red-600">
+<p>Ce champ est invalide</p>
+</div>
+</div>
+
+
+  <div class="mb-6 w-full">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email</label>
+      <input type="text" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=" email" >
+      <div *ngIf="registerForm.controls.email.dirty &&  registerForm.controls.email.errors && registerForm.controls.email.errors.required" class="text-red-600">
+        <p>Ce champ est requis</p>
+      </div>
+      <div *ngIf="registerForm.controls.email.dirty &&  registerForm.controls.email.errors && registerForm.controls.email.errors.pattern" class="text-red-600">
+        <p>Ce format est incorrect</p>
+      </div>
+      </div>
+
+
+  <button  type="submit" 
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Modifier</button>
+</form>
+</div> -->

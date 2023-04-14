@@ -1,0 +1,93 @@
+  <div class="flex justify-center items-center my-32  ">
+<div class="w-full max-w-2xl  bg-white border border-gray-200 rounded-lg shadow-2xl sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700" >
+  <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white ">Inscription</h5>
+  <div>
+    <p class="text-center text-red-700 font-bold" *ngIf="signupError">
+      {{signupError}}
+    </p>
+  </div>
+<form class="flex flex-col" method="POST" id="loginform" [formGroup]="profileForm" >
+  <div class="flex gap-10 justify-between">
+    <div class="mb-6 w-full">
+      <label for="inputEmail4" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prénom</label>
+      <input type="text" formControlName="firstName" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="prenom" >
+      <div *ngIf="profileForm.controls.firstName.dirty &&  profileForm.controls.firstName.errors && profileForm.controls.firstName.errors.required" class="text-red-600">
+      <p>Ce champ est requis</p>
+    </div>
+    <div *ngIf="profileForm.controls.firstName.dirty &&  profileForm.controls.firstName.errors && profileForm.controls.firstName.errors.whitespace && !profileForm.controls.firstName.errors.required" class="text-red-600">
+      <p>Ce champ est invalide</p>
+    </div>
+
+
+    </div>
+    <div class="mb-6 w-full">
+      <label for="inputPassword4" class="block mb-2 text-sm font-medium text-gray-900">Nom</label>
+      <input type="text" formControlName="lastName" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="nom" >
+      <div *ngIf="profileForm.controls.lastName.dirty &&  profileForm.controls.lastName.errors && profileForm.controls.lastName.errors.required" class="text-red-600">
+        <p>Ce champ est requis</p>
+      </div>
+        <div *ngIf="profileForm.controls.lastName.dirty &&  profileForm.controls.lastName.errors && profileForm.controls.lastName.errors.whitespace && !profileForm.controls.lastName.errors.required" class="text-red-600">
+          <p>Ce champ est invalide</p>
+        </div>
+    </div>
+  </div>
+
+  <div class="flex gap-10 justify-between">
+    <div class="mb-6 w-full">
+      <label for="inputAddress" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+      <input type="text" formControlName="Email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="email" >
+      <div *ngIf="profileForm.controls.Email.dirty &&  profileForm.controls.Email.errors && profileForm.controls.Email.errors.required" class="text-red-600">
+        <p>Ce champ est requis</p>
+      </div>
+      <div *ngIf="profileForm.controls.Email.dirty &&  profileForm.controls.Email.errors && profileForm.controls.Email.errors.pattern" class="text-red-600">
+        <p>Ce format de mail est incorrect</p>
+      </div>
+
+    </div>
+
+    <div class="mb-6 w-full">
+      <label for="inputState" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rôle <span style="color: red;">*</span></label>
+      <select type="password" id="role" name="role" class="form-select "  formControlName="Role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+        <option value="admin">administrateur</option>
+        <option value="utilisateur">utilisateur</option>
+      </select>
+      <div *ngIf="profileForm.controls.Role.dirty &&  profileForm.controls.Role.errors && profileForm.controls.Role.errors.hasRole" class="text-red-600">
+        <p>Ce champ est requis</p>
+      </div>
+
+
+      </div>
+
+  </div>
+
+  <div class="flex gap-10 justify-between">
+    <div class="mb-6 w-full">
+      <label for="inputAddress2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mot de passe</label>
+      <input type="password" formControlName="Password" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="mot de passe" >
+      <div *ngIf="profileForm.controls.Password.dirty &&  profileForm.controls.Password.errors && profileForm.controls.Password.errors.required" class="text-red-600">
+        <p>Ce champ est requis</p>
+      </div>
+
+    </div>
+    <div class="mb-6 w-full">
+      <label for="inputAddress2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmation </label>
+      <input placeholder="confirmer mot de passe" type="password" formControlName="Confirm" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+      <div *ngIf="profileForm.controls.Confirm.dirty &&  profileForm.controls.Confirm.errors && profileForm.controls.Confirm.errors.required" class="text-red-600">
+        <p>Ce champ est requis</p>
+      </div>
+      <div *ngIf="profileForm.controls.Confirm.dirty &&  profileForm.controls.Confirm.errors && profileForm.controls.Confirm.errors.mustMatch" class="text-red-600">
+        <p>Ces deux mots de passe ne sont pas identiques</p>
+      </div>
+
+    </div>
+  </div>
+
+  <button [title]="profileForm.invalid ? 'Veuillez remplir correctement tous les champs': 'Soumettre'" (click)="register()" type="submit"  [disabled]="profileForm.invalid"
+  class="text-white bg-blue-700 hover:bg-blue-800 disabled:bg-blue-300 disabled:hover:bg-blue-400
+   focus:ring-4 focus:outline-none focus:ring-blue-300
+   font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Ajouter</button>
+</form>
+
+</div>
+</div>
+

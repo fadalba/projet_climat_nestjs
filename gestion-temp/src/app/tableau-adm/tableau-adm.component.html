@@ -1,0 +1,181 @@
+<div class=" h-screen flex flex-col gap-5 justify-center mt-6 mb-6 px-32 py-32" *ngIf="tabOn">
+    <div class="flex justify-between">
+        <div class="">
+            <input class="form-controlMe "  type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="Rechercher...">
+        </div>
+        <div>
+            <a routerLink="/tableau-arch/">
+            <button type="button"
+                class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 mr-2 mb-2">archive
+
+            </button>
+        </a>
+        </div>
+    </div>
+
+    <div class="w-full h-full"> <!-- overflow-x-auto relative shadow-md sm:rounded-lg -->
+        <table aria-describedby="tableau utilisateur" class="w-full text-sm text-left text-dark-500 dark:text-dark-400 ">
+            <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-blue-500 dark:text-dark-400">
+                <tr>
+                    <th scope="col" class="p-4">
+
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Nom
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Prénom
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Matricule
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Email
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Role
+                    </th>
+
+                    <th scope="col" class="py-3 px-6">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border boder-2 "
+                    *ngFor="let donnes of donne  | filter:searchText | paginate: { itemsPerPage: 5, currentPage: pages }">
+                    <td class="p-4 w-4">
+
+                    </td>
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{donnes.nom}}
+                    </th>
+                    <td class="py-4 px-6">
+                        {{donnes.prenom}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.matricule}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.email}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.role}}
+                    </td>
+
+                    <td class="flex items-center py-4 px-6 space-x-3" >
+
+                        <button (click)="recupereDonne(donnes._id,donnes.prenom,donnes.nom,donnes.email)" style="border: none;background-color: white;" type="submit">
+                                <svg width="25" height="25" viewBox="0 0 61 67" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_159_5098)">
+                                        <path
+                                            d="M56.1867 2.83979C53.5775 -0.0260254 49.36 -0.0260254 46.7508 2.83979L43.1646 6.76558L54.8285 19.5767L58.4146 15.6378C61.0238 12.772 61.0238 8.1396 58.4146 5.27378L56.1867 2.83979ZM20.5398 31.6289C19.8131 32.4271 19.2531 33.4085 18.9314 34.4947L15.4049 46.115C15.0594 47.2404 15.3334 48.4835 16.0959 49.3341C16.8584 50.1847 17.9902 50.4726 19.0268 50.0931L29.6064 46.2197C30.5834 45.8533 31.477 45.2513 32.2156 44.4531L52.1479 22.5472L40.4721 9.723L20.5398 31.6289ZM11.4375 8.37515C5.12305 8.37515 0 14.0021 0 20.9376V54.4376C0 61.3732 5.12305 67.0001 11.4375 67.0001H41.9375C48.252 67.0001 53.375 61.3732 53.375 54.4376V41.8751C53.375 39.5589 51.6713 37.6876 49.5625 37.6876C47.4537 37.6876 45.75 39.5589 45.75 41.8751V54.4376C45.75 56.7539 44.0463 58.6251 41.9375 58.6251H11.4375C9.32871 58.6251 7.625 56.7539 7.625 54.4376V20.9376C7.625 18.6214 9.32871 16.7501 11.4375 16.7501H22.875C24.9838 16.7501 26.6875 14.8789 26.6875 12.5626C26.6875 10.2464 24.9838 8.37515 22.875 8.37515H11.4375Z"
+                                            fill="black" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_159_5098">
+                                            <rect width="61" height="67" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                        </button>
+
+                        <button (click)="delete(donnes._id)" style="border: none;background-color: white;" type="submit">
+                            <svg width="25" height="25" viewBox="0 0 46 63" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M2.875 0H43.125C44.7152 0 46 2.01094 46 4.5V9C46 11.4891 44.7152 13.5 43.125 13.5H2.875C1.28477 13.5 0 11.4891 0 9V4.5C0 2.01094 1.28477 0 2.875 0ZM2.875 18H43.125V54C43.125 58.9641 40.5465 63 37.375 63H8.625C5.45352 63 2.875 58.9641 2.875 54V18ZM14.375 29.25C14.375 30.4875 15.0219 31.5 15.8125 31.5H30.1875C30.9781 31.5 31.625 30.4875 31.625 29.25C31.625 28.0125 30.9781 27 30.1875 27H15.8125C15.0219 27 14.375 28.0125 14.375 29.25Z"
+                                    fill="black" />
+                            </svg>
+                        </button>
+                        <button (click)="changeRole(donnes._id)"
+                            style="border: none;background-color: white;" type="submit">
+                            <svg width="25" height="25" viewBox="0 0 43 75" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_159_5089)">
+                                    <path
+                                        d="M0 32.8132C0 35.4059 1.20098 37.5007 2.6875 37.5007C4.17402 37.5007 5.375 35.4059 5.375 32.8132C5.375 25.0495 8.98633 18.7507 13.4375 18.7507H26.875V23.4382C26.875 25.3278 27.5301 27.0417 28.5379 27.7741C29.5457 28.5065 30.6963 28.0964 31.4689 26.7633L36.8439 17.3883C37.8938 15.5573 37.8938 12.5837 36.8439 10.7526L31.4689 1.3776C30.6963 0.0299478 29.5457 -0.36556 28.5379 0.366862C27.5301 1.09928 26.875 2.7985 26.875 4.68815V9.37565H13.4375C6.01328 9.37565 0 19.8639 0 32.8132ZM43 42.1882C43 39.5954 41.799 37.5007 40.3125 37.5007C38.826 37.5007 37.625 39.5954 37.625 42.1882C37.625 49.9518 34.0137 56.2507 29.5625 56.2507H16.125V51.5632C16.125 49.6735 15.4699 47.9596 14.4621 47.2272C13.4543 46.4948 12.3037 46.9049 11.5311 48.238L6.15605 57.613C5.10625 59.444 5.10625 62.4176 6.15605 64.2487L11.5311 73.6237C12.3037 74.9714 13.4543 75.3669 14.4621 74.6344C15.4699 73.902 16.125 72.2028 16.125 70.2985V65.6257H29.5625C36.9867 65.6257 43 55.1374 43 42.1882Z"
+                                        fill="black" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_159_5089">
+                                        <rect width="43" height="75" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                    </td>
+
+
+                </tr>
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+    <div class="flex justify-center "> <!-- fixed-bottom justify-content-center -->
+        <div class="pagination">
+            <pagination-controls (pageChange)="pages = $event"></pagination-controls>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<div class=" my-32 p-20 bg-white rounded-md shadow-md mx-48">
+         <h1 class="font-bold text-xl text-center mb-3">Modification</h1>
+
+         <div>
+            <p class="text-center text-red-700 font-bold" *ngIf="signupError">
+              {{signupError}}
+            </p>
+          </div>
+<div class="flex  gap-5 justify-center  " *ngIf="!tabOn">
+    <form [formGroup]="registerForm" (ngSubmit)="modifier()">
+
+      <div class="mb-6 w-full">
+      <label for="prenom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prenom</label>
+      <input type="text" formControlName="prenom" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="prenom" >
+      <div *ngIf="registerForm.controls.prenom &&  registerForm.controls.prenom.errors && registerForm.controls.prenom.errors.required" class="text-red-600">
+      <p>Ce champ est requis</p>
+    </div>
+    <div *ngIf="registerForm.controls.prenom.dirty &&  registerForm.controls.prenom.errors && registerForm.controls.prenom.errors.whitespace && !registerForm.controls.prenom.errors.required" class="text-red-600">
+      <p>Ce champ est invalide</p>
+    </div>
+   </div>
+   <div class="mb-6 w-full">
+    <label for="nom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">nom</label>
+    <input type="text" formControlName="nom" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="nom" >
+    <div *ngIf="registerForm.controls.nom.dirty &&  registerForm.controls.nom.errors && registerForm.controls.nom.errors.required" class="text-red-600">
+    <p>Ce champ est requis</p>
+  </div>
+  <div *ngIf="registerForm.controls.nom.dirty &&  registerForm.controls.nom.errors && registerForm.controls.nom.errors.whitespace && !registerForm.controls.nom.errors.required" class="text-red-600">
+    <p>Ce champ est invalide</p>
+  </div>
+ </div>
+
+
+        <div class="mb-6 w-full">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email</label>
+            <input type="text" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=" email" >
+            <div *ngIf="registerForm.controls.email.dirty &&  registerForm.controls.email.errors && registerForm.controls.email.errors.required" class="text-red-600">
+              <p>Ce champ est requis</p>
+            </div>
+            <div *ngIf="registerForm.controls.email.dirty &&  registerForm.controls.email.errors && registerForm.controls.email.errors.pattern" class="text-red-600">
+              <p>Ce format est incorrect</p>
+            </div>
+            </div>
+
+
+        <button  type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Modifier</button>
+    </form>
+</div>
+</div>

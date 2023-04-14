@@ -1,0 +1,77 @@
+
+ <div class=" h-screen flex flex-col gap-5 justify-center mt-6 mb-6">
+    <div class="search-hero " style="display: flex;"> 
+        <div class="search-hero">
+            <input class="form-controlMe" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Rechercher...">
+          </div> 
+         <!--  <div style="float: right; margin-left: 80%;">    
+            <button   type="button" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">archive</button>
+        </div> -->
+          </div> 
+          
+    <div class="w-full h-full" > <!-- overflow-x-auto relative shadow-md sm:rounded-lg -->
+        <table class="w-full text-sm text-left text-dark-500 dark:text-dark-400 ">
+            <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-blue-500 dark:text-dark-400 ">
+                <tr>
+                    <th scope="col" class="p-4">
+                        
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Nom
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Prénom
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Matricule
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Email
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Role
+                    </th>
+                    
+                    <th scope="col" class="py-3 px-6">
+                       date d'inscription
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border boder-2 " *ngFor="let donnes of donne  | filter:searchText | paginate: { itemsPerPage: 5, currentPage: pages }">
+                    <td class="p-4 w-4">
+                        
+                    </td>
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{donnes.nom}}
+                    </th>
+                    <td class="py-4 px-6">
+                        {{donnes.prenom}} 
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.matricule}}                    
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.email}} 
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.role}} 
+                    </td>
+                    
+                    <td class="py-4 px-6">
+                        {{donnes.datedinscription}} 
+                    </td>
+                    
+                   
+                    
+            </tbody>
+        </table>
+       
+    </div>
+    <div class="container forpagination  "> <!-- fixed-bottom justify-content-center -->
+        <div class="pagination">
+       <pagination-controls  (pageChange)="pages = $event"></pagination-controls>
+     </div>
+     </div>
+    
+       </div> 

@@ -1,0 +1,21 @@
+[
+    {
+        "Heure": "8H00",
+        "temperature": "20°C",
+        "humidite": "20%",
+        "img": "assets/sun-cloud.png"
+    },
+    {
+        "Heure": "12H00",
+        "temperature": "25°C",
+        "humidite": "20%",
+        "img": "assets/sun.png"
+    },
+    {
+        "Heure": "19H00",
+        "temperature": "24°C",
+        "humidite": "20%",
+        "img": "assets/moon-cloud.png"
+    }
+
+]

@@ -1,0 +1,265 @@
+<div class=" h-screen flex flex-col gap-5 justify-center  mt-6 mb-6 px-32 py-32" >
+    <div class="search-hero py-10" style="display: flex;">
+        <div class="search-hero ">
+            <input class="form-controlMe" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="Rechercher...">
+        </div>
+
+    </div>
+
+    <div class="w-full h-full"> <!-- overflow-x-auto relative shadow-md sm:rounded-lg -->
+        <table class="w-full text-sm text-left text-dark-500 dark:text-dark-400">
+            <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-blue-500 dark:text-dark-400">
+                <tr>
+                    <th scope="col" class="p-4">
+
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Nom
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Prénom
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Matricule
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Email
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Role
+                    </th>
+
+                    <th scope="col" class="py-3 px-6">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border boder-2 "
+                    *ngFor="let donnes of donne  | filter:searchText | paginate: { itemsPerPage: 5, currentPage: pages }">
+                    <td class="p-4 w-4">
+
+                    </td>
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{donnes.nom}}
+                    </th>
+                    <td class="py-4 px-6">
+                        {{donnes.prenom}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.matricule}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.email}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{donnes.role}}
+                    </td>
+
+                    <td class="flex items-center py-4 px-6 space-x-3">
+
+
+
+                        <button (click)="restaurer(donnes._id)" style="border: none;background-color: white;" type="submit">
+                            <svg width="25" height="25" viewBox="0 0 46 63" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M2.875 0H43.125C44.7152 0 46 2.01094 46 4.5V9C46 11.4891 44.7152 13.5 43.125 13.5H2.875C1.28477 13.5 0 11.4891 0 9V4.5C0 2.01094 1.28477 0 2.875 0ZM2.875 18H43.125V54C43.125 58.9641 40.5465 63 37.375 63H8.625C5.45352 63 2.875 58.9641 2.875 54V18ZM14.375 29.25C14.375 30.4875 15.0219 31.5 15.8125 31.5H30.1875C30.9781 31.5 31.625 30.4875 31.625 29.25C31.625 28.0125 30.9781 27 30.1875 27H15.8125C15.0219 27 14.375 28.0125 14.375 29.25Z"
+                                    fill="black" />
+                            </svg>
+                        </button>
+
+                    </td>
+
+
+                </tr>
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+    <div class="flex justify-center  "> <!-- fixed-bottom justify-content-center -->
+        <div class="pagination">
+            <pagination-controls (pageChange)="pages = $event"></pagination-controls>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <div  class="container tab">
+      <div class="search-hero">
+        <input class="form-controlMe" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Rechercher...">
+      </div>
+        <table class="table">
+            <thead class="bg-primary">
+              <tr>
+                <th scope="col">Prenom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">email</th>
+                <th scope="col">Matricule</th>
+                <th scope="col">Role</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let donnes of donne | filter:searchText | paginate: { itemsPerPage: 7, currentPage: pages }">
+                <td >{{donnes.prenom}}</td>
+                <td >{{donnes.nom}}</td>
+                <td >{{donnes.email}}</td>
+                <td >{{donnes.matricule}}</td>
+                <td >{{donnes.role}}</td>
+                <td   class="d-flex justify-center">
+                  <form   [formGroup]="updateForm" (ngSubmit)="restaurer(donnes._id)">
+                    <input
+                    class="form-control"
+                    type="hidden"
+                    formControlName="etat"
+                    required
+                  />
+                    <button style="border: none;background-color: white;" type="submit">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 12H16M12 16V8M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#0D6EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="container ">
+     <div class="pagination">
+    <pagination-controls  (pageChange)="pages = $event"></pagination-controls>
+  </div>
+  </div>
+</body>
+</html>
+
+ -->

@@ -1,0 +1,129 @@
+<div class="flex gap-20 flex-col px-32 py-20 bg-gray-100">
+<div class="flex flex-col md:flex-row gap-10">
+        <div class="flex bg-white shadow-md w-full py-16 gap-32 rounded-md justify-center items-center w-96">
+            <div class="flex flex-col justify-center items-center">
+              <img src="assets/temp.png" alt="">
+              <span class="font-bold text-2xl">
+                  {{climatRealtime.temperature}}° C
+              </span>
+              <span class="flex font-bold">
+                  Température
+              </span>
+            </div>
+            <div>
+              <img src="assets/humidite.png" alt="">
+              <span class="font-bold text-2xl">
+                  {{climatRealtime.humidity }}%
+              </span>
+              <span class="flex font-bold">
+                  Humidité
+              </span>
+            </div>
+        </div>
+            <div class="flex py-16 bg-white px-10 shadow-md gap-28 justify-center items-center rounded-md flex-col h-72 w-96">
+              <div class="h-10 w-44  ">
+                  <img src="{{imageSrc}}" alt="Ventilo">
+                  <div>{{messageText}}</div>
+
+              </div>
+              <div class="flex justify-center items-center mt-12">
+                  <div class="flex gap-2 font-bold ">
+
+            <div class="h-10 w-8 ">
+                    <button *ngFor="let imageButton of imageButtonOff; " (click)="onClick(imageButton)" class="button">
+           <img src="{{offsrc}}" alt="">
+                    </button>
+                  </div>
+               <div class="h-10 w-8">
+                    <button *ngFor="let imageButton of imageButtonOn; " (click)="onClick(imageButton)" class="button">
+           <img src="{{onsrc}}" alt="">
+                    </button>
+                  </div>
+                  </div>
+
+              </div>
+            </div>
+            <div class="w-96 h-72">
+              <img class="rounded-md w-96 h-72" src="assets/sec.jpg" alt="humidite">
+            </div>
+</div>
+
+
+
+<div class="flex flex-col gap-10">
+
+  <div class="flex gap-10">
+      <div class="w-full  flex flex-row gap-10">
+        <div *ngFor="let histor of histo"
+            class="bg-white shadow-md rounded-md relative  w-full h-fit py-10 flex flex-col gap-10 justify-center items-center">
+            <div class="absolute -top-8 rounded-md bg-blue-500 border-2 px-20 py-2">
+              <span class="font-bold text-white text-center text-4xl">
+                  {{histor.Heure}}
+              </span>
+            </div>
+            <div class="w-32 h-32">
+                <img src="{{histor.img}}" alt="">
+            </div>
+            <div class="flex gap-28 justify-center items-center">
+              <div class="flex flex-col justify-center items-center">
+
+                  <span class="font-bold text-4xl">
+                    {{histor.temperature}} °C
+                  </span>
+                  <span class="flex font-bold">
+                    Temperature
+                  </span>
+              </div>
+              <div>
+                  <span class="flex ">
+
+                  </span>
+                  <span class="font-bold text-4xl">
+                    {{histor.humidity}} %
+                  </span>
+                  <span class="flex font-bold">
+                    Humidité
+                  </span>
+              </div>
+            </div>
+        </div>
+
+      </div>
+  </div>
+  <!--   /Historique/ -->
+  <!-- <div> -->
+      <div class="flex flex-col gap-5 bg-white shadow-md rounded-md p-10">
+        <h1 class="flex font-bold text-2xl h-5" >Historique</h1>
+        <div class="flex flex-col gap-5 w-full">
+
+            <div class="flex ">
+            <div class="w-44">
+            </div>
+              <div *ngFor="let jour of ['Lundi' ,'Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']"
+                  class="w-44 flex h-5">
+                  <span class="text-2xl">{{jour}} </span>
+              </div>
+            </div>
+
+            <div class="flex">
+              <div class="w-44 flex text-2xl">
+                <img class="w-8 h-10 object-fill" src="assets/temp.png" alt="">
+              </div>
+              <div *ngFor="let tempt of tableauhis " class="w-44 flex text-2xl h-5">
+                  <span>{{tempt.temperature}} </span>
+              </div>
+            </div>
+
+            <div class="flex">
+            <div class="w-44 flex text-2xl">
+              <img class="w-8 h-10 object-fill" src="assets/humidite.png" alt="">
+            </div>
+              <div *ngFor="let tempt of tableauhis " class="w-44 flex text-2xl h-5">
+                  <span> {{tempt.humidity}}</span>
+              </div>
+            </div>
+
+        </div>
+      </div>
+</div>
+</div>
